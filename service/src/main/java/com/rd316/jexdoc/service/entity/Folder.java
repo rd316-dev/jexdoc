@@ -2,6 +2,7 @@ package com.rd316.jexdoc.service.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -23,12 +25,10 @@ public class Folder {
     private String name;
 
     @JoinColumn(columnDefinition = "parent_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Folder parent;
 
     @OneToMany(mappedBy = "parent")
     private List<Folder> subFolders;
-
-    public Folder() {}
 
 }

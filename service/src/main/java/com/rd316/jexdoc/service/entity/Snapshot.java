@@ -2,6 +2,7 @@ package com.rd316.jexdoc.service.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -34,9 +36,11 @@ public class Snapshot {
 
     @NotNull
     @JoinColumn(columnDefinition = "document_id", nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Document document;
 
-    public Snapshot() {}
+    public Snapshot(UUID id) {
+        this.id = id;
+    }
 
 }
