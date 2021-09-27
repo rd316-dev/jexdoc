@@ -31,4 +31,7 @@ public class Folder {
     @OneToMany(mappedBy = "parent")
     private List<Folder> subFolders;
 
+    public Folder(String name) {
+        this.name = name;
+    }
 }

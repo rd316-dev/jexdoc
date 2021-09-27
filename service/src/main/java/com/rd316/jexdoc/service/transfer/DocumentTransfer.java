@@ -54,8 +54,6 @@ public class DocumentTransfer {
 
         if (document.getFolder() != null)
             this.folder = new FolderTransfer(document.getFolder());
-        else
-            this.folder = new FolderTransfer("_default");
     }
 
     public Document getEntity() {
@@ -73,7 +71,7 @@ public class DocumentTransfer {
         this.tags.forEach(tag -> tags.add(new Tag(tag)));
         document.setTags(tags);
 
-        document.setFolder(new Folder());
+        document.setFolder(folder.getEntity());
 
         List<Snapshot> snapshots = new ArrayList<>();
         this.snapshots.forEach(id -> snapshots.add(new Snapshot(id)));
